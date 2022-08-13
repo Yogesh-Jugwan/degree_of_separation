@@ -97,7 +97,7 @@ const FriendRelationShip = ({ connections, ToastContainer, toast }) => {
             </button>}
           <ToastContainer />
         </div>
-        <p>{friendConnection.map(i => <p className="font-weight-bold text-light mt-3">{i}</p>)}</p>
+        {friendConnection.map(i => <p key={i+1} className="font-weight-bold text-light mt-3">{i}</p>)}
       </div>
     </>
   );
