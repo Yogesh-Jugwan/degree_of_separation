@@ -39,13 +39,14 @@ const FriendRelationShip = ({ connections, ToastContainer, toast }) => {
     connectionPaths.length === 0 && toast.warn("People No Friend exists");
     connectionPaths.length !== 0 && toast.success(source + " see your frineds/Links");
 
-    return setFriendConnection(connectionPaths);
+    setFriendConnection(connectionPaths);
   }
+  
   return (
     // return the list of connections between source and target
     <>
       <div className="container mt-4 bg-info p-3  ">
-        <label htmlFor="exampleInputEmail1">Degree of separation</label>
+        <label className="font-weight-bold text-light">Degree of separation</label>
         <div className="row">
           <div className="col">
             <select
@@ -71,7 +72,7 @@ const FriendRelationShip = ({ connections, ToastContainer, toast }) => {
                 setFriend(event.target.value);
               }}
             >
-              <option>select Friend </option>
+              <option>Select Friend </option>
               {connections.map((item) => {
                 return (
                   item.name !== people && (
@@ -85,16 +86,18 @@ const FriendRelationShip = ({ connections, ToastContainer, toast }) => {
           </div>
         </div>
         <div className="mt-3 center">
-          <button
-            type="submit"
-            className="btn btn-primary btn-lg btn-block"
-            onClick={() => getConnections(people, friend, connections)}
-          >
-            submit
-          </button>
+          {people === "" || people === "Select People" || friend === "" || friend === "Select Friend" ? "" :
+            <button
+              type="submit"
+              className={`btn btn-primary btn-lg btn-block `}
+
+              onClick={() => getConnections(people, friend, connections)}
+            >
+              submit
+            </button>}
           <ToastContainer />
         </div>
-        <p>{friendConnection}</p>
+        <p>{friendConnection.map(i => <p className="font-weight-bold text-light mt-3">{i}</p>)}</p>
       </div>
     </>
   );

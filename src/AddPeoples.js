@@ -26,7 +26,7 @@ const AddFriend = ({ peopleName, setConnections, setPeopleName, connections,Toas
             <div className='container mt-4 bg-info p-3 col'>
                 <form onSubmit={addPeople}>
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Add People</label>
+                        <label className="font-weight-bold text-light">Add People</label>
 
                         <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name"
                             value={peopleName}

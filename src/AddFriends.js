@@ -13,7 +13,7 @@ const AddFriends = ({ connections, setConnections, ToastContainer, toast }) => {
     }
     return (
         <div className='container mt-4 p-3 bg-info col ml-2'>
-            <label htmlFor="exampleInputEmail1">Add Friend</label>
+            <label className="font-weight-bold text-light">Add Friend</label>
             <div className="input-group mb-3 ">
                 <div className="input-group-prepend">
                     <label className="input-group-text" htmlFor="inputGroupSelect01">select people</label>
