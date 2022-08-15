@@ -4,28 +4,26 @@ const FriendRelationShip = ({ connections, ToastContainer, toast }) => {
   const [people, setPeople] = useState("");
   const [friend, setFriend] = useState("");
   const [friendConnection, setFriendConnection] = useState([]);
-  function connectionsListToGraph(connectionsData) {
-    const Graph = {};
+  function connectionsList(connectionsData) {
+    const List = {};
     for (let { name, friends } of connectionsData) {
-      Graph[name] = friends;
+      List[name] = friends;
     }
-    return Graph;
+    return List;
   }
 
   function getConnections(source, target, connectionsData) {
-    const Graph = connectionsListToGraph(connectionsData);
+    const List = connectionsList(connectionsData);
     const connectionPaths = [];
 
-    function findConnectionsDFS(source, target, path = [source], visited = {}) {
+    function findConnections(source, target, path = [source], visited = {}) {
       if (visited[source]) return;
-
       visited[source] = true;
-
-      for (let friend of Graph[source]) {
+      for (let friend of List[source]) {
         if (friend === target) {
           connectionPaths.push(path.concat("->" + target));
         } else {
-          findConnectionsDFS(
+          findConnections(
             friend,
             target,
             path.concat("->" + friend),
@@ -34,7 +32,7 @@ const FriendRelationShip = ({ connections, ToastContainer, toast }) => {
         }
       }
     }
-    findConnectionsDFS(source, target);
+    findConnections(source, target);
 
     connectionPaths.length === 0 && toast.warn("People No Friend exists");
     connectionPaths.length !== 0 && toast.success(source + " see your frineds/Links");
