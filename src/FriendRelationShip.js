@@ -16,9 +16,7 @@ const FriendRelationShip = ({ connections, ToastContainer, toast }) => {
     const List = connectionsList(connectionsData);
     const connectionPaths = [];
 
-    function findConnections(source, target, path = [source], visited = {}) {
-      if (visited[source]) return;
-      visited[source] = true;
+    function findConnections(source, target, path = [source]) {
       for (let friend of List[source]) {
         if (friend === target) {
           connectionPaths.push(path.concat("->" + target));
@@ -27,7 +25,6 @@ const FriendRelationShip = ({ connections, ToastContainer, toast }) => {
             friend,
             target,
             path.concat("->" + friend),
-            visited
           );
         }
       }
